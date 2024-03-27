@@ -1,0 +1,219 @@
+<?php
+
+    if(isset($_GET['kode'])){
+        $sql_cek = "SELECT * from riwayat_keluarga a 
+		INNER JOIN daftar_pegawai b ON a.nik=b.nik WHERE a.id_keluarga='".$_GET['kode']."'";
+        $query_cek = mysqli_query($koneksi, $sql_cek);
+        $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
+    }
+?>
+<!-- <div style="margin-left: 12; margin-bottom: 16px;">
+
+<div class="dropdown">
+	<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+		aria-haspopup="true" aria-expanded="false">
+		Riwayat Pegawai
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		<a href="?page=data-golongan&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item"> <span class="menu-collapsed">Riwayat Golongan</span>
+		</a>
+		<a href="?page=data-jabatan&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Jabatan</a>
+		<a href="?page=data-diklat&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Diklat</a>
+		<a href="?page=data-tugas&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Tugas Tambahan</a>
+		<a href="?page=data-pendidikan&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Pendidikan</a>
+		<a href="?page=data-disiplin&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Hukuman Disiplin</a>
+		<a href="?page=data-mutasi&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Mutasi CPNS ke PNS</a>
+		<a href="?page=data-gaji&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Kenaikan Gaji Berkala</a>
+		<a href="?page=data-penilaian&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Penilaian Kinerja</a>
+		<a href="?page=data-penghargaan&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Penghargaan</a>
+		<a href="?page=data-pangkat&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Pangkat</a>
+		<a href="?page=data-kursus&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			class="dropdown-item">
+			<span class="menu-collapsed">Riwayat Kursus</a>
+	</div>
+	<button class="btn btn-warning" style="color: black;">
+		<a href="?page=data-keluarga&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>"
+			style="color: white;">
+			<i class="fa-duotone fa-backward-step" style="color: black;"></i>Riwayat Keluarga
+		</a>
+	</button>
+</div>
+<br> -->
+<div class="row">
+
+	<div class="col-md-8">
+		<div class="card card-info">
+			<div class="card-header">
+				<h3 class="card-title">Detail Riwayat Keluarga</h3>
+
+				<div class="card-tools">
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<table class="table">
+					<tbody>
+					<tr>
+							<td style="width: 150px">
+								<b>NIK</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['nik']; ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="width: 150px">
+								<b>Nama Pegawai</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['nama_lengkap']; ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="width: 150px">
+								<b>Nama Keluarga</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['nama_keluarga']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 150px">
+								<b>Hubungan Keluarga</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['hubungan_keluarga']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 150px">
+								<b>Tempat Lahir Keluarga</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['tempat_lahir_keluarga']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 150px">
+								<b>Tanggal Lahir Keluarga</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['tanggal_lahir_keluarga']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 150px">
+								<b>Jenis Kelamin Keluarga</b>
+							</td>
+							<td>
+								<?php echo $data_cek['jenis_kelamin_keluarga']; ?>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td style="width: 150px">
+								<b>Agama Keluarga</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['agama_keluarga']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 150px">
+								<b>Nik Keluarga</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['nik_keluarga']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 150px">
+								<b>Alamat Keluarga</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['alamat_keluarga']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 150px">
+								<b>Status Pernikahan</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['status_pernikahan']; ?>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 150px">
+								<b>Status Pekerjaan</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['status_pekerjaan']; ?>
+							</td>
+						</tr>
+						<tr> 
+
+						<tr>
+							<td style="width: 150px">
+								<b>Wajib Pajak</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['wajib_pajak']; ?>
+							</td>
+						</tr>
+						<tr>
+
+						<tr>
+							<td style="width: 150px">
+								<b>Status Hidup</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['status_hidup']; ?>
+							</td>
+						</tr>
+						<tr>
+
+						<tr>
+							<td style="width: 150px">
+								<b>Tunjangan Gaji</b>
+							</td>
+							<td>:
+								<?php echo $data_cek['tunjangan_gaji']; ?>
+							</td>
+						</tr>
+						<tr>
+						
+					</tbody>
+				</table>
+				<div class="card-footer">
+					<a href="?page=data-keluarga&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama_lengkap']; ?>" class="btn btn-warning">Kembali</a>
+					<a href="?page=cetak-keluarga&nik=<?php echo $data_cek['nik']; ?>&nama=<?php echo $data_cek['nama']; ?>&kode=<?php echo $_GET['kode'];?>" target="blank"class="btn btn-primary">Print</a> 
+					</div>	
+			
+			</div>
+		</div>
+	</div>
+
+</div>
